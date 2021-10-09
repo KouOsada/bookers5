@@ -19,6 +19,19 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   # [与フォローを通じて参照→自分がフォローしている人]
   has_many :followings, through: :relationships, source: :followed
+  # メソッド追加
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+  
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+  
+  def following?(user)
+    followings.include?(user)
+  end
+  # メソッドここまで
   
   # バリデーション
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
