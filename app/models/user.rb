@@ -4,11 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  # リレーション
+  # アソシエーション
   has_many :books, dependent: :destroy
   attachment :profile_image, destroy: false
   has_many :favorites, dependent: :destroy
   has_many :book_comments, dependent: :destroy
+  has_many :user_rooms, dependent: :destroy
+  has_many :chats, dependent: :destroy
   
   # フォロー機能
   # [被フォロー]
