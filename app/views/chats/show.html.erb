@@ -10,7 +10,6 @@
             <th style="text-align: right; font-size: 20px;"><%= @user.name %></th>
           </tr>
         </thead>
-        
         <% @chats.each do |chat| %>
           <% if chat.user_id == current_user.id %>
             <tbody>
@@ -35,7 +34,7 @@
       <%= form_with model: @chat, remote: true do |f| %>
         <%= f.text_field :message %><br />
         <%= f.hidden_field :room_id %><br />
-        <%= f.submit "Send", class: "btn btn-sm btn-success chat-" %>
+        <%= f.submit "Send", class: "btn btn-sm btn-success chat-btn" %>
       <% end %>
     </div>
   </div>
