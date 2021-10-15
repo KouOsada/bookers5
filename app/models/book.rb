@@ -8,6 +8,7 @@ class Book < ApplicationRecord
   end
 
   has_many :book_comments, dependent: :destroy
+  has_many :view_counts, dependent: :destroy
 
   # 検索機能のメソッド
   def self.search_for(content, method)
